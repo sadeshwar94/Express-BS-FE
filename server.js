@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
         <p>Instance ID: MH-TEST-FE-1A</p>
         <p>Server Name: Front End Server 01</p>
         <p>Subnet ID: (Public-subnet-1A)</p>
-        <p>Version No : 0.0.1</p>
+        <p>Version No : 0.1.0</p>
       </body>
     </html>
   `);
