@@ -20,5 +20,5 @@ jobs:
         destination_branch: master
         pr_title: "Update from upstream"
         pr_body: "This is an automated pull request from the development repository to sync with the forked master branch."
-        github_token: ${{ secrets.GB_TOKEN }}
+        github_token: ${{secrets.GB_TOKEN}}
         destination_repo: sadeshwar-mh/Express-BS-FE
