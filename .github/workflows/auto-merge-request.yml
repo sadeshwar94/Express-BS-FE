@@ -1,27 +1,32 @@
 name: Auto Create Pull Request to Production Fork
 
-on:
-  push:
-    branches:
-      - master
+#on:
+#  push:
+#    branches:
+#      - master
+
+on: 
+  workflow_dispatch:
+  schedule:
+  - cron: "* * * * *"
 
 jobs:
-  create-pull-request:
+  sync:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch all history for all branches and tags
 
-      - name: Create Pull Request to Production Fork from sadeshwar94/Express-BS-FE
-        uses: peter-evans/create-pull-request@v4
+      - name: Sync and merge upstream repository with your current repository
+  # You may pin to the exact commit or the version.
+  # uses: dabreadman/sync-upstream-repo@fc5fe9952946b1daaafd9abd7fcd7e260b81ddbe
+        uses: dabreadman/sync-upstream-repo@v1.3.0
         with:
-          token: ${{ secrets.PROD_FORK_PAT }}
-          repository: sadeshwar-mh/Express-BS-FE  
-          title: 'Automated Update from Developer Master'
-          body: 'This is an automated pull request to merge changes from the developer repositorys master branch.'
-          head: master  # Source branch in the current repository
-          base: master  # Target branch in the production fork
-          commit-message: 'Automated update from developer master'
+    # URL of gitHub public upstream repo
+          upstream_repo: https://github.com/sadeshwar94/Express-BS-FE
+    # Branch to merge from upstream (defaults to downstream branch)
+          upstream_branch: master
+    # Branch to merge into downstream
+          downstream_branch: master
+          token: $ {{ secrests.PROD_FORK_PAT}}
